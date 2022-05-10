@@ -4,7 +4,7 @@ First we must understand what the DOM means, which is basically the graphical in
 
 1.- Memorization: It reduces the computation time, as long as we have already executed said function once. Ejm:
 
-<!-- const memo = (fn) => {
+    const memo = (fn) => {
 	const memory = {}
 
 	return (a) => {
@@ -42,6 +42,6 @@ fn(5010000)
 fn(5020000)
 fn(5030000)
 fn(5040000)
-console.timeEnd('with memo') -->
+console.timeEnd('with memo')
 
 2.- Usecallback: It is a memory function that is responsible for remembering the function and in the event that it is the same, it will always return the same instance.
