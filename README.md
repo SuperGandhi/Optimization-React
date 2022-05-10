@@ -4,6 +4,7 @@ First we must understand what the DOM means, which is basically the graphical in
 
 1.- Memorization: It reduces the computation time, as long as we have already executed said function once. Ejm:
 
+// Simulation of the work carried out by memo
     const memo = (fn) => {
 	const memory = {}
 
