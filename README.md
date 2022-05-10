@@ -45,3 +45,5 @@ First we must understand what the DOM means, which is basically the graphical in
     console.timeEnd('with memo')
 
 2.- Usecallback: It is a memory function that is responsible for remembering the function and in the event that it is the same, it will always return the same instance.
+
+3.- UseMemo: We use it when we make use of a heavy function, where we pass the heavy function as an argument, the second argument will be an array that will contain the dependencies of this function, this adds a layer of complexity, we should only add it if we see that our performance is affected by the amount of time it takes to execute a heavy function.
