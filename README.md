@@ -17,7 +17,7 @@ First we must understand what the DOM means, which is basically the graphical in
 		memory[a] = fn(a)
 		return memory[a]
 	}
-}
+    }
 
     const fn = memo((iterator) => {
 	let total = 1
@@ -26,7 +26,7 @@ First we must understand what the DOM means, which is basically the graphical in
 	}
 
 	return total
-})
+    })
 
     console.time('without memo')
     fn(5000000)
