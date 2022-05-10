@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+How can I optimize performance with ReactJs?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+First we must understand what the DOM means, which is basically the graphical interface. Every time the state of our UI changes, the DOM has to be updated to represent this state change. The problem occurs when we want to make multiple updates to the DOM of our application, since updating the DOM is optimized but showing these changes to the user is an extremely cumbersome process, this will cause us to begin to notice a notable decline in the performance of our application. So, what can we do to make this task lighter for our processors and this is where the concept of virtual DOM plays an important role working in a more efficient way than the DOM, by having the virtual DOM working and the DOM not working. It would mean that we are doing double work, the answer is yes, however, this is much more efficient than going directly to update the DOM. So, when we have the virtual DOM , the main difference is that it only renders the changes we make to one of our nodes compared to the classic DOM, making it much more efficient. Now, if React is optimized by default, why would you have to add more optimization to our application? It happens that when we have an application that contains many nodes, although not all of them will be updated, there will be some that will have a render method extremely heavy much greater than the computing capacity of a machine and if we do not prevent the render method from being executed we will be triggering from the root node, the render method of absolutely all the nodes, this will be a problem when we Let's have a complex application where each render method will be executing complicated logic. With this small application we will be able to see some practical solutions to fulfill this purpose.
 
-## Available Scripts
+1.- Memorization: It reduces the computation time, as long as we have already executed said function once. Ejm:
 
-In the project directory, you can run:
+const memo = (fn) => {
+	const memory = {}
 
-### `npm start`
+	return (a) => {
+		if (memory[a]) {
+			console.log('pulling out of memory')
+			return memory[a]
+		}
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+		console.log('computing')
+		memory[a] = fn(a)
+		return memory[a]
+	}
+}
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+const fn = memo((iterator) => {
+	let total = 1
+	for (let i = 0; i < iterator; i++) {
+		total = total * iterator
+	}
 
-### `npm test`
+	return total
+})
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+console.time('without memo')
+fn(5000000)
+fn(5010000)
+fn(5020000)
+fn(5030000)
+fn(5040000)
+console.timeEnd('without memo')
 
-### `npm run build`
+console.time('with memo')
+fn(5000000)
+fn(5010000)
+fn(5020000)
+fn(5030000)
+fn(5040000)
+console.timeEnd('with memo')
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
