@@ -19,7 +19,7 @@ First we must understand what the DOM means, which is basically the graphical in
 	}
 }
 
-const fn = memo((iterator) => {
+    const fn = memo((iterator) => {
 	let total = 1
 	for (let i = 0; i < iterator; i++) {
 		total = total * iterator
@@ -28,20 +28,20 @@ const fn = memo((iterator) => {
 	return total
 })
 
-console.time('without memo')
-fn(5000000)
-fn(5010000)
-fn(5020000)
-fn(5030000)
-fn(5040000)
-console.timeEnd('without memo')
+    console.time('without memo')
+    fn(5000000)
+    fn(5010000)
+    fn(5020000)
+    fn(5030000)
+    fn(5040000)
+    console.timeEnd('without memo')
 
-console.time('with memo')
-fn(5000000)
-fn(5010000)
-fn(5020000)
-fn(5030000)
-fn(5040000)
-console.timeEnd('with memo')
+    console.time('with memo')
+    fn(5000000)
+    fn(5010000)
+    fn(5020000)
+    fn(5030000)
+    fn(5040000)
+    console.timeEnd('with memo')
 
 2.- Usecallback: It is a memory function that is responsible for remembering the function and in the event that it is the same, it will always return the same instance.
