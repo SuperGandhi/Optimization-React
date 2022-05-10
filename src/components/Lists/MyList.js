@@ -1,11 +1,13 @@
-const Li = ({ fullname }) => {
+import {memo} from 'react';
+
+const Li = memo(({ fullname }) => {
   console.log(`renderizando ${fullname}`)
   return (
     <li>
       {fullname}
     </li>
   )
-}
+})
 
 const MyList = ({ data }) => {
   console.log('renderizando lista')
@@ -20,5 +22,6 @@ const MyList = ({ data }) => {
     </ul>
   )
 }
+
 
 export default MyList
